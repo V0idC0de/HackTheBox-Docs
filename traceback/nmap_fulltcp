@@ -1,0 +1,9 @@
+# Nmap 7.80 scan initiated Sat Jun  6 16:38:50 2020 as: nmap -sS -p1-65535 -oN nmap_fulltcp traceback
+Nmap scan report for traceback (10.10.10.181)
+Host is up (0.032s latency).
+Not shown: 65533 closed ports
+PORT   STATE SERVICE
+22/tcp open  ssh
+80/tcp open  http
+
+# Nmap done at Sat Jun  6 16:39:47 2020 -- 1 IP address (1 host up) scanned in 56.11 seconds
