@@ -1,4 +1,4 @@
-./*.ovpn
-./*.pem
-./*.key
-./*.ppk
+*.ovpn
+*.pem
+*.key
+*.ppk
