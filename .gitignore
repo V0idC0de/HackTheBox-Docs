@@ -2,3 +2,6 @@
 *.pem
 *.key
 *.ppk
+
+# Don't sync my tools folder
+tools/*
