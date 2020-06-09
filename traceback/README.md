@@ -58,7 +58,9 @@ in `linenum`'s log.
 
 ### 5.1 pwfeedback
 
-As the target machine neither has internet access nor a compiler installed, the files built by the exploit scrix
+As the target machine neither has internet access nor a compiler installed, the files built by the exploit script have to be built manually and pushed over to the target. However, when executing the script, it doesn't seem to work. Seems like this vulnerability was introduced at a later point or doesn't apply in the installation.
+
+### 5.2 sudo security bypass
 
 A promising exploit using a missing UID check to impersonate `root`.
 Unfortunately it doesn't work, as `webadmin` has very restricted `sudo` privileges, which don't allow leveraging this vulnerability.
