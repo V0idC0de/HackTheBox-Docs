@@ -21,8 +21,8 @@ Let's get an overview of the host itself next, as there seem to be things to dis
 
 ## 2. Initial Scanning
 
-```
-# nmap -sS -Pn -p1-65535 delivery.htb
+```bash
+$ nmap -sS -Pn -p1-65535 delivery.htb
 Starting Nmap 7.91 ( https://nmap.org ) at 2021-01-30 19:29 CET
 Nmap scan report for 10.10.10.222
 Host is up (0.031s latency).
@@ -67,11 +67,12 @@ There seems to be an account required for that operation, as an e-mail address i
 
 There is a **Sign In** button, whose destination offers a link to a registration form. Let's try creating an account with e-mail address `valeera@delivery.htb`.
 
-> At this point I tried using that e-mail address to sign-up at the Mattermost > server, hoping the e-mail activation is just an optional step. **It isn't.**
+> At this point I tried using that e-mail address to sign-up at the Mattermost
+> server, hoping the e-mail activation is just an optional step. **It isn't.**
 
-> There was another login form for **Agents**, which looked differently. Using 
-> default credentials or some guesses like `admin:admin` didn't work.
-> Took a mental note of that, next to Mattermost. Might be useable later.
+There was another login form for **Agents**, which looked differently. Using 
+default credentials or some guesses like `admin:admin` didn't work.
+Took a mental note of that, next to Mattermost. Might be useable later.
 
 Next attempt is creating a ticket, to see what we can do with such an account.
 Submitting the form yields a **very** interesting message, saying that there is an **e-mail address for further communication regarding this ticket**.
@@ -135,13 +136,12 @@ The administrative panel also allows messing with user accounts. My own account 
 
 Beyond that, there was nothing too interesting here.
 
-
 ## 5. Breaking into Userland
 
 We got a username and password in **Step 4**, along with the impression that this company has a credential re-use problem. Let's try connecting to the OpenSSH server discovered during the `nmap` scans.
 
 ```shell
-⚡root@MEMEMACHINE ~$ ssh delivery.htb -l maildeliverer
+$ ssh delivery.htb -l maildeliverer
 maildeliverer@delivery.htb's password:
 [...]
 maildeliverer@Delivery:~$
@@ -310,6 +310,7 @@ MariaDB [osticket]> select id,user_id,username,passwd from ost_user_account;
 > ## Password Hashes gathered
 >
 > `$2a$08$yY4HDrD1SatcwG89gmnY8.1tE8JJYPZWQ.0NyzE6bayBzQxByA9/m`
+>
 > `$2a$08$WfQ7XIF27W3LkrePzhnV/e.auNW3cipNu4foex4H8kfrVdvTl.Rge`
 
 Those retreived password hashes belong to users named `saint` and `hacking`. While the latter is probably not interesing and just somebody who created an account for themselves, `saint` could be interesting. Put it to the passwords to be cracked later.
@@ -351,7 +352,7 @@ $ MariaDB [mattermost]> select Username, Password from Users where Username = "r
 The earlier hint saying that password re-use is a problem suggests, that this one might be the actual `root` password for the system.
 Let's start with this one when cracking.
 
-# 8. Cracking Passwords and owning `root`
+## 8. Cracking Passwords and owning `root`
 
 Let's fire up `hashcat`. Had to look up a couple things, as I haven't used that thing in a while. The Mattermost chat had another hint suggesting to use `hashcat` rules to combine the already [known phrase](password_cracking/phrase.txt) with **"all variations of common words or phrases"**.
 
