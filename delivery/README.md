@@ -4,7 +4,7 @@
 
 Started by just trying to connect to the host directly in my browser, as there is usually some sort of website. Indeed we are greeted with a nice landing page. Nothing too fancy going on just yet, however, the **Contact Us** button appears to be a working link, leading to a little info page.
 
-!["Contact Us" Page](/screenshots/contact-us.png)
+!["Contact Us" Page](screenshots/contact-us.png)
 
 On that page, three interesting things are discovered:
 
