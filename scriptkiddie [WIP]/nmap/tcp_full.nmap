@@ -1,0 +1,11 @@
+# Nmap 7.91 scan initiated Sun Feb  7 12:52:47 2021 as: nmap -sS -sV -Pn -T 4 -p1-65535 -oA nmap/tcp_full 10.129.75.139
+Nmap scan report for scriptkiddie (10.129.75.139)
+Host is up (0.033s latency).
+Not shown: 65533 closed ports
+PORT     STATE SERVICE VERSION
+22/tcp   open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.1 (Ubuntu Linux; protocol 2.0)
+5000/tcp open  http    Werkzeug httpd 0.16.1 (Python 3.8.5)
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Sun Feb  7 12:53:13 2021 -- 1 IP address (1 host up) scanned in 25.87 seconds

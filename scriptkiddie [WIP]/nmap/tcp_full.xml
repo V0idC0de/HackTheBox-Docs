@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.91 scan initiated Sun Feb  7 12:52:47 2021 as: nmap -sS -sV -Pn -T 4 -p1-65535 -oA nmap/tcp_full 10.129.75.139 -->
+<nmaprun scanner="nmap" args="nmap -sS -sV -Pn -T 4 -p1-65535 -oA nmap/tcp_full 10.129.75.139" start="1612698767" startstr="Sun Feb  7 12:52:47 2021" version="7.91" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="65535" services="1-65535"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<taskprogress task="SYN Stealth Scan" time="1612698770" percent="6.84" remaining="41" etc="1612698811"/>
+<taskprogress task="SYN Stealth Scan" time="1612698771" percent="14.59" remaining="24" etc="1612698794"/>
+<taskprogress task="SYN Stealth Scan" time="1612698772" percent="18.51" remaining="23" etc="1612698794"/>
+<taskprogress task="SYN Stealth Scan" time="1612698772" percent="20.51" remaining="20" etc="1612698791"/>
+<taskprogress task="SYN Stealth Scan" time="1612698773" percent="22.87" remaining="21" etc="1612698793"/>
+<host starttime="1612698767" endtime="1612698793"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="10.129.75.139" addrtype="ipv4"/>
+<hostnames>
+<hostname name="scriptkiddie" type="PTR"/>
+</hostnames>
+<ports><extraports state="closed" count="65533">
+<extrareasons reason="resets" count="65533"/>
+</extraports>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" product="OpenSSH" version="8.2p1 Ubuntu 4ubuntu0.1" extrainfo="Ubuntu Linux; protocol 2.0" ostype="Linux" method="probed" conf="10"><cpe>cpe:/a:openbsd:openssh:8.2p1</cpe><cpe>cpe:/o:linux:linux_kernel</cpe></service></port>
+<port protocol="tcp" portid="5000"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" product="Werkzeug httpd" version="0.16.1" extrainfo="Python 3.8.5" method="probed" conf="10"><cpe>cpe:/a:python:python:3.8.5</cpe></service></port>
+</ports>
+<times srtt="32766" rttvar="2366" to="100000"/>
+</host>
+<runstats><finished time="1612698793" timestr="Sun Feb  7 12:53:13 2021" summary="Nmap done at Sun Feb  7 12:53:13 2021; 1 IP address (1 host up) scanned in 25.87 seconds" elapsed="25.87" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>
