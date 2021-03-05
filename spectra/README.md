@@ -1,4 +1,4 @@
-# Spectra
+# Writeup - Spectra
 
 ## 1. Initial Scanning
 
