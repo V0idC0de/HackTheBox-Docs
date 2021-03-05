@@ -40,12 +40,14 @@ ERROR 1130 (HY000): Host '10.10.14.41' is not allowed to connect to this
 ```
 
 However, this indicates an IP-whitelisting. Maybe the database is really unauthenticated, but only from certain IPs. We might be able to confirm that later, when we can get the machine itself to establish a connection. After checking that, let's take a look at the website, which greets us with a very simple landing page.
+
 ![Landing Page](screenshots/landing-page.png)
 
 Looks pretty "work in progress". Clicking on **Test** send us to `http://spectra.htb/testing/index.php` which includes `/testing` in the path, suggesting that this is indeed some sort of development system. The page itself yields an error message saying
 > Error establishing a database connection
 
 Meanwhile Wappalyzer captured the technology in use here:
+
 ![Wappalyzer Results](screenshots/website-technologies.png)
 
 **WordPress** is in use here, along with an outdated PHP version.
@@ -53,6 +55,7 @@ This might come in handy, if heavier exploitation techniques are required.
 
 As usual, I do a quick check, if directory listing is enabled on the website, especially as this seems very fragile in terms of configuration and hardening.
 Indeed, directory listing is enabled, yielding quite some insight into a full-blown WordPress installation:
+
 ![Directory Listing](screenshots/testing-dirlist.png)
 
 In WordPress, relevant database credentials are usually located in `wp-config.php`, but calling that script causes it to execute, which results nothing. Fortunately for us, there is another "quick backup file" next to it called `wp-config.php.save`, which is not evaluated, but returned as text (see [wp-config.php.save](wp-config.php.save)). This reveals some credentials.
@@ -76,6 +79,7 @@ define( 'DB_HOST', 'localhost' );
 
 We continue browsing through the directories, discovering `plugins`, which might
 yield some vulnerable plugins, which can be exploited later. Just a single one called `akismet` is discovered.
+
 ![WP Plugins](screenshots/wp-plugins.png)
 
 Searchsploit doesn't yield any good results, as XSS is not really abusable in this case.
@@ -99,6 +103,7 @@ Neat, but overall less than what I hoped for, so just a quick note of that and l
 ## 3. Owning WordPress and nginx
 
 The link `Software Issue Tracker` leads to a WordPress installation. Nothing to crazy about the page itself. Just a single post and no interesting elements.
+
 ![WordPress Main Page](screenshots/wp-main.png)
 
 The big banner shows `administrator` as author of that post, so that should be a username. Visiting [WordPress' admin login](http://spectra.htb/main/wp-login.php) shows a regular WordPress login screen.
@@ -108,6 +113,7 @@ From there, we should be able to launch some sort of tool to get code execution 
 
 Google-ing for some WordPress Plugin serving as Webshell yields a [GitHub repository](https://github.com/aghanathan/HaCKeD). Downloading the `zip`, uploading it as plugin and enabling it, shows a file explorer.
 Navigating to `/home/` reveals the user of the system:
+
 ![Webshell File Explorer](screenshots/webshell-home.png)
 
 Assuming we are `nginx` currently, we try to upload our own SSH key to `/home/nginx/.ssh/authorized_keys` which succeeds, as well as the access attempt:
